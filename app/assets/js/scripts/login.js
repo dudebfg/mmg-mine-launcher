@@ -262,6 +262,8 @@ loginButton.addEventListener('click', () => {
     // Show loading stuff.
     loginLoading(true)
 
+    console.log( loginUsername.value, loginPassword.value )
+
     AuthManager.addAccount(loginUsername.value, loginPassword.value).then((value) => {
         updateSelectedAccount(value)
         loginButton.innerHTML = loginButton.innerHTML.replace(Lang.queryJS('login.loggingIn'), Lang.queryJS('login.success'))

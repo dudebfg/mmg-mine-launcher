@@ -8,6 +8,7 @@
 // Requirements
 const request = require('request')
 const logger  = require('./loggerutil')('%c[Mojang]', 'color: #a02d2a; font-weight: bold')
+const uuidv4 = require('uuid').v4;
 
 // Constants
 const minecraftAgent = {
@@ -35,7 +36,11 @@ exports.authenticate = function(username, password, clientToken = true,){
         }
         if(clientToken != null){
             body.clientToken = clientToken
+        } else {
+            body.clientToken = uuidv4()
         }
+
+        console.log( body )
 
         request.post(authpath + '/auth/authenticate',
             {
@@ -43,6 +48,8 @@ exports.authenticate = function(username, password, clientToken = true,){
                 body
             },
             function(error, response, body){
+                console.log( error, response, body )
+
                 if(error){
                     logger.error('Error during authentication.', error)
                     reject(error)
