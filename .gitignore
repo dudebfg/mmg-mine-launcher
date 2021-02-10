@@ -106,3 +106,4 @@ dist
 # Locks
 package-lock.json
 yarn.lock
+some.lock
